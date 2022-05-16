@@ -97,3 +97,67 @@ switch (playing) {
         break;
 }
 }, 1000)
+        audio.remove()
+    curr = 0};
+document.body.appendChild(audio)
+}
+
+OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Drakevskiy.dev", {
+    closeable: true,
+    moveable: true
+  }, h => {
+    WINDOW = h;
+    h.container.style.color = "white";
+    h.container.innerHTML = `
+    <p>This radio is clientside, Shut off the stations before you switch them for optimal results</p>
+    <span>Sajvnczeid Radio!</span>
+    <button id="RNV">Radio New Vegas</button>
+    <button id="ODR">Old Daydun Radio</button>
+    <button id="OFF">Off</button><br>
+    <div>
+    <h id="h1">Now Playing: ${radstat}</h></div>`; //add extra buttons and eventlisteners to make more stations!
+    
+  }).move(0, 0));
+
+document.getElementById("RNV").addEventListener("click", () => {
+playing = 1
+clos = 0
+});
+
+document.getElementById("ODR").addEventListener("click", () => {
+    playing = 2
+    clos = 0
+});;
+
+document.getElementById("OFF").addEventListener("click", () => {
+    alert(`Music will shut off`)
+    clos = 1
+    playing = 0
+    });;
+
+setInterval(function() {
+if(curr == 1) return
+if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
+switch (playing) {
+    case 1:
+        j = random(0, stations.rnvnames.length - 1)
+        radstat = stations.rnvnames[j]
+        document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
+        playaudio(stations.rnvlinks[j])
+        break;
+    case 2:
+        j = random(0, stations.odrnames.length - 1)
+        radstat = stations.odrnames[j]
+        document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
+        playaudio(stations.odrlinks[j])
+    /*
+    case etc-number:
+        j = random(0, stations.odrnames.length - 1)
+        radstat = stations.customnames[j]
+        document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
+        playaudio(stations.customlinks[j])
+    */
+    default:
+        break;
+}
+}, 1000)
