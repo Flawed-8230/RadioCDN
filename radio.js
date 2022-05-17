@@ -4,13 +4,22 @@ async function fetchData() {
 }
 fetchData()
 
-var next = 0
+
 let tmpclos = 0
 let clos = 1
 let curr = 0
 let j
 let radstat = 'Radio OFF'
 let playing = 0
+
+var loop = 0
+var prev = 0
+var next = 0
+var plink = null
+var pname = null
+var clink = null
+var cname = null
+
 
 function random(min, max) {
     min = Math.ceil(min);
@@ -21,6 +30,8 @@ function random(min, max) {
 function playaudio(url, radstat) {
     var audio = document.createElement('audio');
     curr = 1
+    clink = url
+    cname = radstat
     audio.style.display = "none";
     audio.src = url;
     audio.autoplay = true;
@@ -28,11 +39,15 @@ function playaudio(url, radstat) {
     setInterval(function() {
     if(clos == 1) {audio.remove();curr = 0};
     if(next == 1) {next = 0; audio.remove();curr = 0;}
+    if(prev == 1) {audio.remove();curr = 0; prev = 0}
     },1000)
     audio.onended = function(){
         audio.remove()
+    plink = url; pname = radstat;
     curr = 0
-    next = 0};
+    next = 0
+    prev = 0
+    };
 document.body.appendChild(audio)
 }
 
@@ -49,7 +64,9 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <button id="ODR">Old Daydun Radio</button>
     <div>
     <span>Controls:</span>
+    <button id="PV">Previous</button>
     <button id="NX">Skip</button>
+    <button id="LP">Loop</button>
     <button id="OFF">Off</button><br>
     <h id="h1">Now Playing: ${radstat}</h></div>`; //add extra buttons and eventlisteners to make more stations!
     
@@ -69,6 +86,16 @@ document.getElementById("NX").addEventListener("click", () => {
     next = 1
 });;
 
+document.getElementById("PV").addEventListener("click", () => {
+    prev = 1
+});
+
+document.getElementById("LP").addEventListener("click", () => {
+    var s = 0
+    if(loop == 0) {loop = 1; s = 1}
+    if(loop == 1 && s == 0) {loop = 0; clink = null; clink = null}
+});
+
 document.getElementById("OFF").addEventListener("click", () => {
     clos = 1
     playing = 0
@@ -77,6 +104,8 @@ document.getElementById("OFF").addEventListener("click", () => {
 setInterval(function() {
 if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
+if(prev == 1 && plink !== null) return playaudio(plink, pname)
+if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
     case 1:
         j = random(0, stations.rnvnames.length - 1)
