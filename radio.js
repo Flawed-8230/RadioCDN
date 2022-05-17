@@ -4,7 +4,7 @@ async function fetchData() {
 }
 fetchData()
 
-var checker
+var next = 0
 let tmpclos = 0
 let clos = 1
 let curr = 0
@@ -26,14 +26,13 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-    if(clos == 1) {audio.remove();curr = 0}
-    if(tmpclos == 1)
-      audio.pause()
-	  checker = setInterval(function() {if(tmpclos == 0) {audio.play();clearInterval(checker)}}, 1000);
-	},1000)
+    if(clos == 1) {audio.remove();curr = 0};
+    if(next == 1) {next == 0; audio.remove();curr = 0;}
+    },1000)
     audio.onended = function(){
         audio.remove()
-    curr = 0};
+    curr = 0
+    next = 0};
 document.body.appendChild(audio)
 }
 
@@ -50,8 +49,7 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <button id="ODR">Old Daydun Radio</button>
     <div>
     <span>Controls:</span>
-    <button id="PA">Pause</button>
-    <button id="PL">Resume</button>
+    <button id="NX">Skip</button>
     <button id="OFF">Off</button><br>
     <h id="h1">Now Playing: ${radstat}</h></div>`; //add extra buttons and eventlisteners to make more stations!
     
@@ -67,18 +65,13 @@ document.getElementById("ODR").addEventListener("click", () => {
     clos = 0
 });;
 
-document.getElementById("PA").addEventListener("click", () => {
-    tmpclos = 1
+document.getElementById("NX").addEventListener("click", () => {
+    next = 1
 });;
 
 document.getElementById("OFF").addEventListener("click", () => {
     clos = 1
     playing = 0
-});;
-
-
-document.getElementById("PL").addEventListener("click", () => {
-    tmpclos = 0
 });;
 
 setInterval(function() {
