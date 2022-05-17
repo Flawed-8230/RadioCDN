@@ -17,7 +17,7 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function checker() {
+function checker(audio) {
 	tmpclos == 0 ? audio.play() : null
 }
 
@@ -32,7 +32,7 @@ function playaudio(url, radstat) {
     if(clos == 1) {clearInterval(checker);audio.remove();curr = 0}
     if(tmpclos == 1)
       audio.pause()
-	  setInterval(checker, 1000);
+	  setInterval(checker(audio), 1000);
 	},1000)
     audio.onended = function(){
         audio.remove()
