@@ -71,6 +71,12 @@ document.getElementById("PA").addEventListener("click", () => {
     tmpclos = 1
 });;
 
+document.getElementById("PA").addEventListener("click", () => {
+    clos = 1
+    playing = 0
+});;
+
+
 document.getElementById("PL").addEventListener("click", () => {
     tmpclos = 0
 });;
