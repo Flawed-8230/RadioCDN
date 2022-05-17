@@ -26,6 +26,8 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
     if(clos == 1) {audio.remove();curr = 0}
+    if(tmpclos == 1) {
+      audio.pause(); setInterval(function() { tmpclos == 0 ? audio.play() : null },1000) }
     }, 1000)
     audio.onended = function(){
         audio.remove()
@@ -33,7 +35,7 @@ function playaudio(url, radstat) {
 document.body.appendChild(audio)
 }
 
-OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Drakevskiy.dev", {
+OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     closeable: true,
     moveable: true
   }, h => {
@@ -41,11 +43,14 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Drakevskiy.dev", {
     h.container.style.color = "white";
     h.container.innerHTML = `
     <p>This radio is clientside, Shut off the stations before you switch them for optimal results</p>
-    <span>Sajvnczeid Radio!</span>
+    <span>Stations:</span>
     <button id="RNV">Radio New Vegas</button>
     <button id="ODR">Old Daydun Radio</button>
-    <button id="OFF">Off</button><br>
     <div>
+    <span>Controls:</span>
+    <button id="PA">Pause</button>
+    <button id="PL">Resume</button>
+    <button id="OFF">Off</button><br>
     <h id="h1">Now Playing: ${radstat}</h></div>`; //add extra buttons and eventlisteners to make more stations!
     
   }).move(0, 0));
@@ -60,9 +65,12 @@ document.getElementById("ODR").addEventListener("click", () => {
     clos = 0
 });;
 
-document.getElementById("OFF").addEventListener("click", () => {
-    clos = 1
-    playing = 0
+document.getElementById("PA").addEventListener("click", () => {
+    tmpclos = 1
+});;
+
+document.getElementById("PL").addEventListener("click", () => {
+    tmpclos = 0
 });;
 
 setInterval(function() {
