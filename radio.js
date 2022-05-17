@@ -4,6 +4,7 @@ async function fetchData() {
 }
 fetchData()
 
+var checker
 let tmpclos = 0
 let clos = 1
 let curr = 0
@@ -17,10 +18,6 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function checker(audio) {
-	tmpclos == 0 ? audio.play() : null
-}
-
 function playaudio(url, radstat) {
     var audio = document.createElement('audio');
     curr = 1
@@ -32,7 +29,7 @@ function playaudio(url, radstat) {
     if(clos == 1) {clearInterval(checker);audio.remove();curr = 0}
     if(tmpclos == 1)
       audio.pause()
-	  setInterval(checker(audio), 1000);
+	  checker = setInterval(function() {tmpclos == 0 ? audio.play() : null}, 1000);
 	},1000)
     audio.onended = function(){
         audio.remove()
