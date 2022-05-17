@@ -27,7 +27,7 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
     if(clos == 1) {audio.remove();curr = 0};
-    if(next == 1) {next == 0; audio.remove();curr = 0;}
+    if(next == 1) {next = 0; audio.remove();curr = 0;}
     },1000)
     audio.onended = function(){
         audio.remove()
