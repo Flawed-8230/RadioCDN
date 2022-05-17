@@ -26,10 +26,10 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-    if(clos == 1) {clearInterval(checker);audio.remove();curr = 0}
+    if(clos == 1) {audio.remove();curr = 0}
     if(tmpclos == 1)
       audio.pause()
-	  checker = setInterval(function() {tmpclos == 0 ? audio.play() : null}, 1000);
+	  checker = setInterval(function() {if(tmpclos == 0) {audio.play();clearInterval(checker)}}, 1000);
 	},1000)
     audio.onended = function(){
         audio.remove()
