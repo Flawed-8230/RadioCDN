@@ -71,7 +71,7 @@ document.getElementById("PA").addEventListener("click", () => {
     tmpclos = 1
 });;
 
-document.getElementById("PA").addEventListener("click", () => {
+document.getElementById("OFF").addEventListener("click", () => {
     clos = 1
     playing = 0
 });;
