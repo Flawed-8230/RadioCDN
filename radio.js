@@ -144,8 +144,11 @@ document.getElementById("C").addEventListener("click", () => {
 });
 
 setInterval(function() {
+
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
 if(curr !== 1) {
+let audio = document.getElementById("audio")
+if(audio) audio.remove()
 if(prev == 1 && plink !== null) return playaudio(plink, pname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
