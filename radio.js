@@ -3,6 +3,7 @@ async function fetchData() {
     stations = await fetch('https://raw.githubusercontent.com/Flawed-8230/RadioCDN/main/station.json').then(body => body.json())
 }
 fetchData()
+var audio
 let vol = 1.0
 let tmpclos = 0
 let clos = 1
@@ -17,15 +18,19 @@ var plink = null
 var pname = null
 var clink = null
 var cname = null
+var k
+
+
 function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function playaudio(url, radstat) {
+    k = url
     prev = 0
     next = 0
-    var audio = document.createElement('audio');
+    audio = document.createElement('audio');
     curr = 1
     clink = url
     cname = radstat
@@ -35,11 +40,6 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {audio.volume = vol},100)
-    setInterval(function() {
-    if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;};
-    if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;}
-    if(prev == 1) {audio.remove();curr = 0}
-    },1000)
     audio.onended = function(){
         audio.remove()
     plink = url; pname = radstat;
@@ -124,6 +124,11 @@ document.getElementById("C").addEventListener("click", () => {
 });
 
 setInterval(function() {
+if(curr == 1) {
+    if(clos == 1) {audio.remove();curr = 0;plink = k; pname = radstat;};
+    if(next == 1) {next = 0; audio.remove();curr = 0;plink = k; pname = radstat;}
+    if(prev == 1) {audio.remove();curr = 0}
+}
 if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
 if(prev == 1 && plink !== null) return playaudio(plink, pname)
