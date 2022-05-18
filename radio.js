@@ -28,6 +28,7 @@ function random(min, max) {
 }
 function playaudio(url, radstat) {
     k = url
+    r = radstat
     prev = 0
     next = 0
     audio = document.createElement('audio');
@@ -125,8 +126,8 @@ document.getElementById("C").addEventListener("click", () => {
 
 setInterval(function() {
 if(curr == 1) {
-    if(clos == 1) {audio.remove();curr = 0;plink = k; pname = radstat;};
-    if(next == 1) {next = 0; audio.remove();curr = 0;plink = k; pname = radstat;}
+    if(clos == 1) {audio.remove();curr = 0;plink = k; pname = r;};
+    if(next == 1) {next = 0; audio.remove();curr = 0;plink = k; pname = r;}
     if(prev == 1) {audio.remove();curr = 0}
 }
 if(curr == 1) return
