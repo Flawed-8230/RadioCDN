@@ -135,8 +135,8 @@ document.getElementById("C").addEventListener("click", () => {
     WINDOW = r;
     r.container.style.color = "white";
     r.container.innerHTML = `
-    <img src="https://files.catbox.moe/nyik8r.png" alt="If you see this message contact D. Sajvnczeid#8230" width="500" height="525"><br>
-    <span>'Radio Developed by Drakevskiy/Flawed#8230 with help from Enix'</span>`
+    <img src="https://files.catbox.moe/nyik8r.png" alt="If you see this message contact D. Sajvnczeid#8230" width="58" height="61"><br>
+    <h1>'Radio Developed by Drakevskiy/Flawed#8230 with help from Enix'</h1>`
   }).move(0, 0));
 });
 
