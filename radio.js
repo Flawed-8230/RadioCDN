@@ -85,6 +85,11 @@ document.getElementById("ODR").addEventListener("click", () => {
     clos = 0
 });
 
+document.getElementById("ODR").addEventListener("click", () => {
+    playing = 3
+    clos = 0
+});
+
 document.getElementById("NX").addEventListener("click", () => {
     next = 1
 });
