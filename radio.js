@@ -18,7 +18,6 @@ var plink = null
 var pname = null
 var clink = null
 var cname = null
-var k
 
 
 function random(min, max) {
@@ -27,14 +26,12 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function playaudio(url, radstat) {
-    k = url
-    r = radstat
+    clink = url
+    cname = radstat
     prev = 0
     next = 0
     audio = document.createElement('audio');
     curr = 1
-    clink = url
-    cname = radstat
     audio.volume = vol
     audio.style.display = "none";
     audio.src = url;
@@ -132,7 +129,7 @@ if(curr == 1) {
 }
 if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
-if(prev == 1 && plink !== null) return playaudio(plink, pname)
+if(prev == 1 && plink !== null) return playaudio(clink, cname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
     case 1:
