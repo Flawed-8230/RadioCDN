@@ -29,11 +29,11 @@ function random(min, max) {
 }
 
 function playaudio(url, radstat) {
+    curr = 1
     k = 0
     prev = 0
     next = 0
     var audio = document.createElement('audio');
-    curr = 1
     clink = url
     cname = radstat
     audio.volume = vol
@@ -153,14 +153,17 @@ if(prev == 1 && plink !== null) return playaudio(plink, pname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
     case 1:
+        curr = 1
         j = random(0, stations.rnvnames.length - 1)
         playaudio(stations.rnvlinks[j], stations.rnvnames[j])
         break;
     case 2:
+        curr = 1
         j = random(0, stations.odrnames.length - 1)
         playaudio(stations.odrlinks[j], stations.odrnames[j])
         break;
     case 3:
+        curr = 1
         j = random(0, stations.csrnames.length - 1)
         playaudio(stations.csrlinks[j], stations.csrnames[j])
         break;
