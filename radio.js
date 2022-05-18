@@ -3,16 +3,13 @@ async function fetchData() {
     stations = await fetch('https://raw.githubusercontent.com/Flawed-8230/RadioCDN/main/station.json').then(body => body.json())
 }
 fetchData()
-
 let vol = 1.0
 let tmpclos = 0
 let clos = 1
 let curr = 0
 let j
-let pld = 0
 let radstat = 'Radio OFF'
 let playing = 0
-
 var loop = 0
 var prev = 0
 var next = 0
@@ -20,21 +17,16 @@ var plink = null
 var pname = null
 var clink = null
 var cname = null
-
-
 function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 function playaudio(url, radstat) {
-    curr = 1
-    k = 0
     prev = 0
     next = 0
-    if (pld !== 0) audio.remove()
     var audio = document.createElement('audio');
+    curr = 1
     clink = url
     cname = radstat
     audio.volume = vol
@@ -44,11 +36,10 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
     audio.volume = vol
-    if(clos == 1) {pld=1; audio.remove(); curr = 0;plink = url; pname = radstat;};
-    if(next == 1) {pld=1; audio.remove(); next = 0; curr = 0;plink = url; pname = radstat;}
-    if(prev == 1) {pld = 1;audio.remove(); curr = 0;}
-    if(k==1) return
-    },100)
+    if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;};
+    if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;}
+    if(prev == 1) {audio.remove();curr = 0}
+    },400)
     audio.onended = function(){
         audio.remove()
     plink = url; pname = radstat;
@@ -58,7 +49,6 @@ function playaudio(url, radstat) {
     };
 document.body.appendChild(audio)
 }
-
 OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     closeable: true,
     moveable: true
@@ -74,8 +64,8 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <div>
     <span>Controls:</span>
     <button id="M">Mute</button>
-    <button id="VD">Volume Down</button>
-    <button id="VU">Volume Up</button>
+    <button id="VH">Half Volume</button>
+    <button id="VF">Full Volume</button>
     <button id="PV">Previous</button>
     <button id="NX">Skip</button>
     <button id="LP">Loop</button>
@@ -84,57 +74,42 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <h2 id="h1">Now Playing: ${radstat}</h2></div>`; //add extra buttons and eventlisteners to make more stations!
     
   }).move(0, 0));
-
 document.getElementById("RNV").addEventListener("click", () => {
 playing = 1
 clos = 0
 });
-
 document.getElementById("ODR").addEventListener("click", () => {
     playing = 2
     clos = 0
 });
-
 document.getElementById("CSR").addEventListener("click", () => {
     playing = 3
     clos = 0
 });
-
 document.getElementById("NX").addEventListener("click", () => {
-    let audio = document.getElementById("audio")
-    if(audio) audio.remove()
     next = 1
 });
-
 document.getElementById("M").addEventListener("click", () => {
     vol = 0
 });
-
-document.getElementById("VD").addEventListener("click", () => {
-    vol = vol-0.1
+document.getElementById("VH").addEventListener("click", () => {
+    vol = .5
 });
-
-document.getElementById("VU").addEventListener("click", () => {
-    vol = vol+0.1
+document.getElementById("VF").addEventListener("click", () => {
+    vol = 1.0
 });
-
 document.getElementById("PV").addEventListener("click", () => {
-    let audio = document.getElementById("audio")
-    if(audio) audio.remove()
     prev = 1
 });
-
 document.getElementById("LP").addEventListener("click", () => {
     var s = 0
     if(loop == 0) {loop = 1; s = 1}
     if(loop == 1 && s == 0) {loop = 0; clink = null; clink = null}
 });
-
 document.getElementById("OFF").addEventListener("click", () => {
     clos = 1
     playing = 0
 });
-
 document.getElementById("C").addEventListener("click", () => {
     OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Credits!", {
     closeable: true,
@@ -149,30 +124,24 @@ document.getElementById("C").addEventListener("click", () => {
 });
 
 setInterval(function() {
-
+if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
-if(curr !== 1) {
-let audio = document.getElementById("audio")
-if(audio) audio.remove()
 if(prev == 1 && plink !== null) return playaudio(plink, pname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
     case 1:
-        curr = 1
         j = random(0, stations.rnvnames.length - 1)
         playaudio(stations.rnvlinks[j], stations.rnvnames[j])
         break;
     case 2:
-        curr = 1
         j = random(0, stations.odrnames.length - 1)
         playaudio(stations.odrlinks[j], stations.odrnames[j])
         break;
     case 3:
-        curr = 1
         j = random(0, stations.csrnames.length - 1)
         playaudio(stations.csrlinks[j], stations.csrnames[j])
         break;
     default:
-        break;}
+        break;
 }
 }, 1000)
