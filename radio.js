@@ -37,7 +37,11 @@ function playaudio(url, radstat) {
     audio.src = url;
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
-    setInterval(function() {audio.volume = vol},100)
+    setInterval(function() {
+       if(audio.volume > 0 && audio.volume < 1) {audio.volume = vol}
+       if(audio.volume < 0) {audio.volume = 0}
+       if(audio.volume > 1) {audio.volume = 1}
+    },100)
     audio.onended = function(){
         audio.remove()
     plink = url; pname = radstat;
