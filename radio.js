@@ -9,7 +9,7 @@ let tmpclos = 0
 let clos = 1
 let curr = 0
 let j
-let k
+let pld = 0
 let radstat = 'Radio OFF'
 let playing = 0
 
@@ -33,6 +33,7 @@ function playaudio(url, radstat) {
     k = 0
     prev = 0
     next = 0
+    if (pld !== 0) audio.remove()
     var audio = document.createElement('audio');
     clink = url
     cname = radstat
@@ -43,9 +44,9 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
     audio.volume = vol
-    if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;k=1};
-    if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;k=1}
-    if(prev == 1) {audio.remove();curr = 0;k=1}
+    if(clos == 1) {pld=1; audio.remove(); curr = 0;plink = url; pname = radstat;};
+    if(next == 1) {pld=1; audio.remove(); next = 0; curr = 0;plink = url; pname = radstat;}
+    if(prev == 1) {pld = 1;audio.remove(); curr = 0;}
     if(k==1) return
     },100)
     audio.onended = function(){
@@ -100,6 +101,8 @@ document.getElementById("CSR").addEventListener("click", () => {
 });
 
 document.getElementById("NX").addEventListener("click", () => {
+    let audio = document.getElementById("audio")
+    if(audio) audio.remove()
     next = 1
 });
 
@@ -116,6 +119,8 @@ document.getElementById("VU").addEventListener("click", () => {
 });
 
 document.getElementById("PV").addEventListener("click", () => {
+    let audio = document.getElementById("audio")
+    if(audio) audio.remove()
     prev = 1
 });
 
