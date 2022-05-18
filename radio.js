@@ -9,6 +9,7 @@ let tmpclos = 0
 let clos = 1
 let curr = 0
 let j
+let k
 let radstat = 'Radio OFF'
 let playing = 0
 
@@ -28,6 +29,7 @@ function random(min, max) {
 }
 
 function playaudio(url, radstat) {
+    k = 0
     prev = 0
     next = 0
     var audio = document.createElement('audio');
@@ -41,9 +43,10 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
     audio.volume = vol
-    if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;};
-    if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;}
-    if(prev == 1) {audio.remove();curr = 0}
+    if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;k=1};
+    if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;k=1}
+    if(prev == 1) {audio.remove();curr = 0;k=1}
+    if(k==1) return
     },400)
     audio.onended = function(){
         audio.remove()
@@ -70,8 +73,8 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <div>
     <span>Controls:</span>
     <button id="M">Mute</button>
-    <button id="VH">Half Volume</button>
-    <button id="VF">Full Volume</button>
+    <button id="VD">Volume Down</button>
+    <button id="VU">Volume Up</button>
     <button id="PV">Previous</button>
     <button id="NX">Skip</button>
     <button id="LP">Loop</button>
@@ -104,12 +107,12 @@ document.getElementById("M").addEventListener("click", () => {
     vol = 0
 });
 
-document.getElementById("VH").addEventListener("click", () => {
-    vol = .5
+document.getElementById("VD").addEventListener("click", () => {
+    vol = vol-0.1
 });
 
-document.getElementById("VF").addEventListener("click", () => {
-    vol = 1.0
+document.getElementById("VU").addEventListener("click", () => {
+    vol = vol+0.1
 });
 
 document.getElementById("PV").addEventListener("click", () => {
