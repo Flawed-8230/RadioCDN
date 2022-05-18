@@ -144,8 +144,8 @@ document.getElementById("C").addEventListener("click", () => {
 });
 
 setInterval(function() {
-if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
+if(curr !== 1) {
 if(prev == 1 && plink !== null) return playaudio(plink, pname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
@@ -162,6 +162,6 @@ switch (playing) {
         playaudio(stations.csrlinks[j], stations.csrnames[j])
         break;
     default:
-        break;
+        break;}
 }
 }, 1000)
