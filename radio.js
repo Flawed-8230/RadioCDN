@@ -44,7 +44,7 @@ function playaudio(url, radstat) {
     if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;};
     if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;}
     if(prev == 1) {audio.remove();curr = 0}
-    },1000)
+    },400)
     audio.onended = function(){
         audio.remove()
     plink = url; pname = radstat;
