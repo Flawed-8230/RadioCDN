@@ -4,7 +4,7 @@ async function fetchData() {
 }
 fetchData()
 
-
+let vol = 1.0
 let tmpclos = 0
 let clos = 1
 let curr = 0
@@ -34,11 +34,13 @@ function playaudio(url, radstat) {
     curr = 1
     clink = url
     cname = radstat
+    audio.volume = vol
     audio.style.display = "none";
     audio.src = url;
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
+    audio.volume = vol
     if(clos == 1) {audio.remove();curr = 0;plink = url; pname = radstat;};
     if(next == 1) {next = 0; audio.remove();curr = 0;plink = url; pname = radstat;}
     if(prev == 1) {audio.remove();curr = 0}
@@ -68,6 +70,9 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <div>
     <span>Controls:</span>
     <button id="PV">Previous</button>
+    <button id="M">Mute</button>
+    <button id="VH">Half Volume</button>
+    <button id="VF">Full Volume</button>
     <button id="NX">Skip</button>
     <button id="LP">Loop</button>
     <button id="OFF">Off</button><span>'              '</span>
@@ -93,6 +98,18 @@ document.getElementById("CSR").addEventListener("click", () => {
 
 document.getElementById("NX").addEventListener("click", () => {
     next = 1
+});
+
+document.getElementById("M").addEventListener("click", () => {
+    vol = 0
+});
+
+document.getElementById("VH").addEventListener("click", () => {
+    vol = .5
+});
+
+document.getElementById("VF").addEventListener("click", () => {
+    vol = 1.0
 });
 
 document.getElementById("PV").addEventListener("click", () => {
