@@ -111,7 +111,6 @@ document.getElementById("OFF").addEventListener("click", () => {
 });
 
 document.getElementById("C").addEventListener("click", () => {
-    Alert('Radio Developed by Drakevskiy/Flawed#8230 with help from Enix')
     OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     closeable: true,
     moveable: true
