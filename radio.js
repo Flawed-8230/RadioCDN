@@ -128,13 +128,13 @@ document.getElementById("OFF").addEventListener("click", () => {
 });
 
 document.getElementById("C").addEventListener("click", () => {
-    OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
+    OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Credits!", {
     closeable: true,
     moveable: true
-  }, h => {
-    WINDOW = h;
-    h.container.style.color = "white";
-    h.container.innerHTML = `
+  }, r => {
+    WINDOW = r;
+    r.container.style.color = "white";
+    r.container.innerHTML = `
     <img src="https://files.catbox.moe/nyik8r.png" alt="If you see this message contact D. Sajvnczeid#8230" width="500" height="525"><br>
     <span>'Radio Developed by Drakevskiy/Flawed#8230 with help from Enix'</span>`
   }).move(0, 0));
