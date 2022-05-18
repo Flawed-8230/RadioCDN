@@ -38,9 +38,9 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-       if(audio.volume > 0 && audio.volume < 1) {audio.volume = vol}
-       if(audio.volume < 0) {audio.volume = 0}
-       if(audio.volume > 1) {audio.volume = 1}
+       if(vol > 0 && vol < 1 ) audio.volume = vol
+       if(vol < 0) {vol = 0}
+       if(vol > 1) {vol = 1}
     },100)
     audio.onended = function(){
         audio.remove()
@@ -95,10 +95,10 @@ document.getElementById("M").addEventListener("click", () => {
     vol = 0
 });
 document.getElementById("VH").addEventListener("click", () => {
-    if(vol !== 0) {vol=vol-0.1}
+    vol=vol-0.1
 });
 document.getElementById("VF").addEventListener("click", () => {
-    if(vol !== 1) {vol=vol+0.1}
+    vol=vol+0.1
 });
 document.getElementById("PV").addEventListener("click", () => {
     prev = 1
