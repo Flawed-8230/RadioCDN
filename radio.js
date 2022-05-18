@@ -93,10 +93,10 @@ document.getElementById("M").addEventListener("click", () => {
     vol = 0
 });
 document.getElementById("VH").addEventListener("click", () => {
-    if(vol >= 0) vol=vol-0.1
+    if(vol > 0) vol=vol-0.1
 });
 document.getElementById("VF").addEventListener("click", () => {
-    if(vol <= 1.0) vol=vol+0.1
+    if(vol < 1.0) vol=vol+0.1
 });
 document.getElementById("PV").addEventListener("click", () => {
     prev = 1
