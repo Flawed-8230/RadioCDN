@@ -69,13 +69,13 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <button id="CSR">Sajvnczeid Radio</button>
     <div>
     <span>Controls:</span>
-    <button id="PV">Previous</button>
     <button id="M">Mute</button>
     <button id="VH">Half Volume</button>
     <button id="VF">Full Volume</button>
+    <button id="PV">Previous</button>
     <button id="NX">Skip</button>
     <button id="LP">Loop</button>
-    <button id="OFF">Off</button><span>'              '</span>
+    <button id="OFF">Off</button><span>                                                                        </span>
     <button id="C">Credits</button><br>
     <h2 id="h1">Now Playing: ${radstat}</h2></div>`; //add extra buttons and eventlisteners to make more stations!
     
