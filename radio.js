@@ -38,7 +38,7 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-       if(vol > 0 && vol < 1 ) audio.volume = vol
+       if(vol > 0 && vol < 1 ) {audio.volume = vol; document.getElementById("volid").innerHTML = `Volume: ${audio.volume}`
        if(vol < 0) {vol = 0}
        if(vol > 1) {vol = 1}
     },100)
@@ -73,6 +73,8 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <button id="LP">Loop</button>
     <button id="OFF">Off</button><span>                                                                        </span>
     <button id="C">Credits</button><br>
+    <span id="volid">Volume: ${audio.volume}</span>
+    <br>
     <h2 id="h1">Now Playing: ${radstat}</h2></div>`; //add extra buttons and eventlisteners to make more stations!
     
   }).move(0, 0));
