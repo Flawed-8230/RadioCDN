@@ -123,13 +123,13 @@ document.getElementById("C").addEventListener("click", () => {
 
 setInterval(function() {
 if(curr == 1) {
-    if(clos == 1) {audio.remove();curr = 0;plink = k; pname = r;};
-    if(next == 1) {next = 0; audio.remove();curr = 0;plink = k; pname = r;}
+    if(clos == 1) {audio.remove();curr = 0;plink = clink; pname = cname;};
+    if(next == 1) {next = 0; audio.remove();curr = 0;plink = clink; pname = cname;}
     if(prev == 1) {audio.remove();curr = 0}
 }
 if(curr == 1) return
 if(clos == 1) return document.getElementById("h1").innerHTML = `Radio OFF`
-if(prev == 1 && plink !== null) return playaudio(clink, cname)
+if(prev == 1 && plink !== null) return playaudio(plink, pname)
 if(loop == 1 && clink !== null) return playaudio(clink, cname)
 switch (playing) {
     case 1:
