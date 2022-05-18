@@ -64,6 +64,7 @@ OWOP.windowSys.addWindow(new OWOP.windowSys.class.window("Sajvnczeid Radio!", {
     <span>Stations:</span>
     <button id="RNV">Radio New Vegas</button>
     <button id="ODR">Old Daydun Radio</button>
+    <button id="CSR">Sajvnczeid Radio</button>
     <div>
     <span>Controls:</span>
     <button id="PV">Previous</button>
@@ -85,7 +86,7 @@ document.getElementById("ODR").addEventListener("click", () => {
     clos = 0
 });
 
-document.getElementById("ODR").addEventListener("click", () => {
+document.getElementById("CSR").addEventListener("click", () => {
     playing = 3
     clos = 0
 });
