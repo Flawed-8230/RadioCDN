@@ -139,7 +139,7 @@ switch (playing) {
         break;
     case 3:
         j = random(0, stations.csrnames.length - 1)
-        playaudio(stations.csrlinks[j])
+        playaudio(stations.csrlinks[j], stations.csrnames[j])
         break;
     default:
         break;
