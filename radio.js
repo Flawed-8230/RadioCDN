@@ -32,13 +32,15 @@ function playaudio(url, radstat) {
     next = 0
     audio = document.createElement('audio');
     curr = 1
-    audio.volume = vol
+    audio.volume = vol.toFixed(1)
     audio.style.display = "none";
     audio.src = url;
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-       if(vol > 0 && vol < 1 ) {audio.volume = vol; document.getElementById("volid").innerHTML = `Volume: ${vol}`}
+       document.getElementById("volid").innerHTML = `Volume: ${vol.toFixed(1)}`
+       if(m == 1) {audio.volume = 0.0; m=0}
+       if(vol > 0 && vol < 1 ) {audio.volume = vol}
        if(vol < 0) {vol = 0}
        if(vol > 1) {vol = 1}
     },100)
@@ -94,7 +96,7 @@ document.getElementById("NX").addEventListener("click", () => {
     next = 1
 });
 document.getElementById("M").addEventListener("click", () => {
-    vol = 0
+    M = 1
 });
 document.getElementById("VH").addEventListener("click", () => {
     vol=vol-0.1
