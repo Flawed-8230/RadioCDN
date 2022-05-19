@@ -38,7 +38,7 @@ function playaudio(url, radstat) {
     audio.autoplay = true;
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
-       if(vol > 0 && vol < 1 ) {audio.volume = vol; document.getElementById("volid").innerHTML = `Volume: ${audio.volume}`
+       if(vol > 0 && vol < 1 ) {audio.volume = vol; document.getElementById("volid").innerHTML = `Volume: ${audio.volume}`}
        if(vol < 0) {vol = 0}
        if(vol > 1) {vol = 1}
     },100)
