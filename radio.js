@@ -4,6 +4,7 @@ async function fetchData() {
 }
 fetchData()
 var audio
+let m = 0
 let vol = 1.0
 let tmpclos = 0
 let clos = 1
