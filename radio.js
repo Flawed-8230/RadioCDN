@@ -97,7 +97,7 @@ document.getElementById("NX").addEventListener("click", () => {
     next = 1
 });
 document.getElementById("M").addEventListener("click", () => {
-    M = 1
+    m = 1
 });
 document.getElementById("VH").addEventListener("click", () => {
     vol=vol-0.1
