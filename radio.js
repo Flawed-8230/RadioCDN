@@ -40,10 +40,9 @@ function playaudio(url, radstat) {
     document.getElementById("h1").innerHTML = `Now Playing: ${radstat}`
     setInterval(function() {
        document.getElementById("volid").innerHTML = `Volume: ${vol.toFixed(1)}`
-       if(m == 1) {audio.volume = 0.0; m=0}
-       if(vol > 0 && vol < 1 ) {audio.volume = vol}
        if(vol < 0) {vol = 0}
        if(vol > 1) {vol = 1}
+       if(vol >= 0 && vol <= 1 ) {audio.volume = vol}
     },100)
     audio.onended = function(){
         audio.remove()
@@ -97,7 +96,7 @@ document.getElementById("NX").addEventListener("click", () => {
     next = 1
 });
 document.getElementById("M").addEventListener("click", () => {
-    m = 1
+    vol = 0
 });
 document.getElementById("VH").addEventListener("click", () => {
     vol=vol-0.1
